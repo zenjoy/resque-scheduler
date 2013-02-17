@@ -72,11 +72,7 @@ module Resque
   private
 
     def build_master_lock
-      if supports_lua?
-        Resque::Scheduler::Lock::Resilient.new(master_lock_key)
-      else
-        Resque::Scheduler::Lock::Basic.new(master_lock_key)
-      end
+      Resque::Scheduler::Lock::Basic.new(master_lock_key)
     end
 
     def master_lock_key
