@@ -36,6 +36,7 @@ module Resque
       # Schedule all jobs and continually look for delayed jobs (never returns)
       def run
         $0 = "resque-scheduler: Starting"
+
         # trap signals
         register_signal_handlers
 
@@ -62,7 +63,7 @@ module Resque
 
         # never gets here.
       end
-     
+
 
       # For all signals, set the shutdown flag and wait for current
       # poll/enqueing to finish (should be almost istant).  In the
