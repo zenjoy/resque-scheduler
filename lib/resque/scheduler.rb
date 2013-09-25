@@ -36,7 +36,7 @@ module Resque
       end
 
       def poll_sleep_amount
-        @poll_sleep_amount ||= 5 # seconds
+        @poll_sleep_amount ||= 1 # seconds
       end
 
       def logger
@@ -221,7 +221,7 @@ module Resque
         args = job_config['args'] || job_config[:args]
 
         klass_name = job_config['class'] || job_config[:class]
-        klass = Resque.constantize(klass_name) rescue klass_name
+        klass = klass_name.constantize rescue klass_name
 
         params = args.is_a?(Hash) ? [args] : Array(args)
         queue = job_config['queue'] || job_config[:queue] || Resque.queue_from_class(klass)
