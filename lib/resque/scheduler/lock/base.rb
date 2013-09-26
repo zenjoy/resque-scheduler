@@ -28,10 +28,7 @@ module Resque
 
         # Releases the lock.
         def release!
-          Thread.new do
-            puts "releasing #{key}"
-            Resque.redis.del(key) == 1
-          end
+          Resque.redis.del(key) == 1
         end
 
       private
