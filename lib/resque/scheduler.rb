@@ -318,7 +318,7 @@ module Resque
             Resque.clean_schedules
             release_master_lock!
           end
-          exit
+          exit 0
         end
       end
 
