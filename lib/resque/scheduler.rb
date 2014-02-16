@@ -75,6 +75,8 @@ module Resque
             end
           end
           poll_sleep
+          
+          break if !!@shutdown # do not exit using SystemExit
         end
 
         # never gets here.
@@ -203,9 +205,9 @@ module Resque
       end
 
       def handle_shutdown
-        exit if @shutdown
+        #exit if @shutdown
         yield
-        exit if @shutdown
+        #exit if @shutdown
       end
 
       def handle_errors
@@ -318,7 +320,7 @@ module Resque
             Resque.clean_schedules
             release_master_lock!
           end
-          exit 0
+          #exit 0
         end
       end
 
